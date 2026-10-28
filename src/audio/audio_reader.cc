@@ -287,7 +287,7 @@ namespace decord {
             LOG(FATAL) << "ERROR Failed to allocate resample context";
         }
         // FFmpeg 7.x uses ch_layout instead of channel_layout
-        AVChannelLayout out_ch_layout;
+        AVChannelLayout out_ch_layout{};
         if (mono) {
             av_channel_layout_default(&out_ch_layout, 1);
         } else {

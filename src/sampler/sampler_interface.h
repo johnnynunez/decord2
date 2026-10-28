@@ -7,6 +7,7 @@
 #ifndef DECORD_SAMPLER_SAMPLER_INTERFACE_H_
 #define DECORD_SAMPLER_SAMPLER_INTERFACE_H_
 
+#include <cstdint>
 #include <memory>
 #include <vector>
 #include <utility>

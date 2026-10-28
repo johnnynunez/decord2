@@ -14,6 +14,11 @@ decord_option(USE_CUDA "Build with CUDA" OFF)
 decord_option(USE_MSVC_MT "Build with MT runtime on MSVC" OFF)
 decord_option(USE_VIDEOTOOLBOX "Build with VideoToolbox support (macOS only)" OFF)
 
+# Initialize CUDA defaults before add_library copies target properties.
+if(USE_CUDA)
+  enable_language(CUDA)
+endif()
+
 # ---------------------------------------------------------------------------
 # Source File Discovery
 # ---------------------------------------------------------------------------
@@ -95,8 +100,7 @@ endif()
 # ---------------------------------------------------------------------------
 if(USE_CUDA)
   message(STATUS "USE_CUDA is ON. Configuring CUDA support.")
-  # 1. Enable the CUDA language. This finds the compiler automatically.
-  enable_language(CUDA)
+  # 1. Find the toolkit after CUDA was enabled before target creation.
   find_package(CUDAToolkit REQUIRED)
 
   # 2. Add CUDA-specific source files to our target
